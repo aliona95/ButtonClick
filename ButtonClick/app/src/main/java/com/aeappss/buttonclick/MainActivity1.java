@@ -32,6 +32,7 @@ import com.google.example.games.basegameutils.BaseGameUtils;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -195,12 +196,20 @@ public class MainActivity1 extends Activity
                 // (gameplay) user clicked the "click me" button
                 scoreOnePoint();
                 break;
-            case R.id.button_camera_game:
 
+            case R.id.button_camera_game:
+                Log.i("CAMERA", "clicked");
+                switchToScreen(R.id.screen_temp);
+                //setContentView(R.layout.activity_main);
+                //setContentView(R.layout.activity_main1);
+                break;
+            case R.id.temp1:
+                Log.i("TEMP", "clicked");
+                //setContentView(R.layout.activity_main);
                 break;
         }
     }
-
+/*
     void startQuickGame() {
         // quick-start a game with 1 randomly selected opponent
         final int MIN_OPPONENTS = 1, MAX_OPPONENTS = 1;
@@ -216,7 +225,7 @@ public class MainActivity1 extends Activity
         // create room
         Games.RealTimeMultiplayer.create(mGoogleApiClient, rtmConfigBuilder.build());
     }
-
+*/
     @Override
     public void onActivityResult(int requestCode, int responseCode, Intent intent) {
 
@@ -724,8 +733,7 @@ public class MainActivity1 extends Activity
 
         if (buf[0] == 'F' || buf[0] == 'U') {
             // score update.
-            int existingScore = mParticipantScore.containsKey(sender) ?
-                    mParticipantScore.get(sender) : 0;
+            int existingScore = mParticipantScore.containsKey(sender) ? mParticipantScore.get(sender) : 0;
             int thisScore = (int) buf[1];
             if (thisScore > existingScore) {
                 // this check is necessary because packets may arrive out of
@@ -744,7 +752,19 @@ public class MainActivity1 extends Activity
             // if it's a final score, mark this participant as having finished
             // the game
             if ((char) buf[0] == 'F') {
+                Log.i("OPPONENT score", String.valueOf(thisScore) + mParticipantScore.get(sender));
                 mFinishedParticipants.add(rtm.getSenderParticipantId());
+
+                /*Iterator itr = mFinishedParticipants.iterator();
+                while(itr.hasNext())
+                {
+                    Log.i("PART", (String) itr.next());
+                }*/
+                if (thisScore > mScore){
+                    Log.i("LAIMEJO - ", "TU");
+                } else {
+                    Log.i("LAIMEJO - ", "AS");
+                }
             }
         }
     }
@@ -767,6 +787,8 @@ public class MainActivity1 extends Activity
             if (p.getStatus() != Participant.STATUS_JOINED)
                 continue;
             if (finalScore) {
+                Log.i("MY score", String.valueOf(mScore));
+
                 // final score notification must be sent via reliable message
                 Games.RealTimeMultiplayer.sendReliableMessage(mGoogleApiClient, null, mMsgBuf,
                         mRoomId, p.getParticipantId());
@@ -788,13 +810,13 @@ public class MainActivity1 extends Activity
             R.id.button_accept_popup_invitation, R.id.button_invite_players,
             /*R.id.button_quick_game,*/ R.id.button_see_invitations, /*R.id.button_sign_in,*/
             /*R.id.button_sign_out,*/ R.id.button_click_me, /*R.id.button_single_player,*/
-            /*R.id.button_single_player_2*/
+            /*R.id.button_single_player_2*/ R.id.button_camera_game
     };
 
     // This array lists all the individual screens our game has.
     final static int[] SCREENS = {
             R.id.screen_game, R.id.screen_main, /*R.id.screen_sign_in,*/
-            R.id.screen_wait
+            R.id.screen_wait, R.id.screen_temp
     };
     int mCurScreen = -1;
 
