@@ -21,7 +21,7 @@
     android:layout_height="match_parent" >
 
     <!-- SIGN-IN SCREEN -->
-    <LinearLayout android:id="@+id/screen_sign_in" style="@style/LLScreen">
+ <!--   <LinearLayout android:id="@+id/screen_sign_in" style="@style/LLScreen">
         <TextView style="@style/GameTitle" />
         <TextView style="@style/GameBlurb" />
 
@@ -31,11 +31,11 @@
         <com.google.android.gms.common.SignInButton android:id="@+id/button_sign_in"
             style="@style/SignInButton" />
     </LinearLayout>
-
+-->
     <!-- MAIN SCREEN -->
     <LinearLayout android:id="@+id/screen_main" style="@style/LLScreen">
         <TextView style="@style/GameTitle" />
-        <Button android:id="@+id/button_single_player_2"
+        <!--<Button android:id="@+id/button_single_player_2"
             style="@style/MainScreenButton"
             android:text="@string/single_player" />
         <TextView style="@style/MainScreenButtonBlurb"
@@ -44,7 +44,7 @@
             style="@style/MainScreenButton"
             android:text="@string/quick_game" />
         <TextView style="@style/MainScreenButtonBlurb"
-            android:text="@string/quick_game_explanation" />
+            android:text="@string/quick_game_explanation" />-->
         <Button android:id="@+id/button_invite_players"
             style="@style/MainScreenButton"
             android:text="@string/invite_players" />
@@ -55,9 +55,12 @@
             android:text="@string/see_invitations" />
         <TextView style="@style/MainScreenButtonBlurb"
             android:text="@string/see_invitations_explanation" />
-        <Button android:id="@+id/button_sign_out"
+        <!--<Button android:id="@+id/button_sign_out"
             style="@style/SignOutButton"
-            android:text="@string/sign_out" />
+            android:text="@string/sign_out" />-->
+        <Button android:id="@+id/button_camera_game"
+            style="@style/MainScreenButton"
+            android:text="camera game" />
     </LinearLayout>
 
     <!-- INVITATION POPUP -->
@@ -74,7 +77,8 @@
     </LinearLayout>
 
     <!-- GAMEPLAY SCREEN -->
-    <LinearLayout android:id="@+id/screen_game" style="@style/LLScreen">
+    <LinearLayout android:id="@+id/screen_game" style="@style/LLScreen"
+        android:background="@color/AccentColor">
         <TextView android:id="@+id/instructions"
             style="@style/Instructions" android:text="@string/instructions" />
         <TextView android:id="@+id/my_score" style="@style/ScoreDisplay" />

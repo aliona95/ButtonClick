@@ -23,6 +23,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".MainActivity" />
+        <activity android:name=".CameraActivity" />
+        <activity android:name=".Camera2Activity" />
+        <activity android:name=".SettingsActivity" />
+        <activity android:name=".ShakeActivity" />
+        <activity android:name=".MenuActivity" />
 
         <meta-data
             android:name="com.google.android.gms.games.APP_ID"

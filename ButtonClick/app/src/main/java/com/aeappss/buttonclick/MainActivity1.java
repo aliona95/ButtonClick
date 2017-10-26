@@ -136,13 +136,14 @@ public class MainActivity1 extends Activity
         Intent intent;
 
         switch (v.getId()) {
-            case R.id.button_single_player:
-            case R.id.button_single_player_2:
+            //case R.id.button_single_player:
+            /*case R.id.button_single_player_2:
                 // play a single-player game
                 resetGameVars();
                 startGame(false);
                 break;
-            case R.id.button_sign_in:
+            */
+            /*case R.id.button_sign_in:
                 // user wants to sign in
                 // Check to see the developer who's running this sample code read the instructions :-)
                 // NOTE: this check is here only because this is a sample! Don't include this
@@ -156,7 +157,8 @@ public class MainActivity1 extends Activity
                 mSignInClicked = true;
                 mGoogleApiClient.connect();
                 break;
-            case R.id.button_sign_out:
+            */
+            /*case R.id.button_sign_out:
                 // user wants to sign out
                 // sign out.
                 Log.d(TAG, "Sign-out button clicked");
@@ -165,6 +167,7 @@ public class MainActivity1 extends Activity
                 mGoogleApiClient.disconnect();
                 switchToScreen(R.id.screen_sign_in);
                 break;
+            */
             case R.id.button_invite_players:
                 // show list of invitable players
                 intent = Games.RealTimeMultiplayer.getSelectOpponentsIntent(mGoogleApiClient, 1, 3);
@@ -183,13 +186,17 @@ public class MainActivity1 extends Activity
                 acceptInviteToRoom(mIncomingInvitationId);
                 mIncomingInvitationId = null;
                 break;
-            case R.id.button_quick_game:
+            /*case R.id.button_quick_game:
                 // user wants to play against a random opponent right now
                 startQuickGame();
                 break;
+            */
             case R.id.button_click_me:
                 // (gameplay) user clicked the "click me" button
                 scoreOnePoint();
+                break;
+            case R.id.button_camera_game:
+
                 break;
         }
     }
@@ -339,9 +346,9 @@ public class MainActivity1 extends Activity
 
         if (mGoogleApiClient != null && mGoogleApiClient.isConnected()) {
             switchToMainScreen();
-        } else {
+        } /*else {
             switchToScreen(R.id.screen_sign_in);
-        }
+        }*/
         super.onStop();
     }
 
@@ -351,9 +358,9 @@ public class MainActivity1 extends Activity
     // this flow simply succeeds and is imperceptible).
     @Override
     public void onStart() {
-        if (mGoogleApiClient == null) {
+        /*if (mGoogleApiClient == null) {
             switchToScreen(R.id.screen_sign_in);
-        } else if (!mGoogleApiClient.isConnected()) {
+        } else */if (!mGoogleApiClient.isConnected()) {
             Log.d(TAG,"Connecting client.");
             switchToScreen(R.id.screen_wait);
             mGoogleApiClient.connect();
@@ -476,7 +483,7 @@ public class MainActivity1 extends Activity
                     connectionResult, RC_SIGN_IN, getString(R.string.signin_other_error));
         }
 
-        switchToScreen(R.id.screen_sign_in);
+        //switchToScreen(R.id.screen_sign_in);
     }
 
     // Called when we are connected to the room. We're not ready to play yet! (maybe not everybody
@@ -779,14 +786,14 @@ public class MainActivity1 extends Activity
     // event handlers.
     final static int[] CLICKABLES = {
             R.id.button_accept_popup_invitation, R.id.button_invite_players,
-            R.id.button_quick_game, R.id.button_see_invitations, R.id.button_sign_in,
-            R.id.button_sign_out, R.id.button_click_me, R.id.button_single_player,
-            R.id.button_single_player_2
+            /*R.id.button_quick_game,*/ R.id.button_see_invitations, /*R.id.button_sign_in,*/
+            /*R.id.button_sign_out,*/ R.id.button_click_me, /*R.id.button_single_player,*/
+            /*R.id.button_single_player_2*/
     };
 
     // This array lists all the individual screens our game has.
     final static int[] SCREENS = {
-            R.id.screen_game, R.id.screen_main, R.id.screen_sign_in,
+            R.id.screen_game, R.id.screen_main, /*R.id.screen_sign_in,*/
             R.id.screen_wait
     };
     int mCurScreen = -1;
@@ -817,9 +824,9 @@ public class MainActivity1 extends Activity
         if (mGoogleApiClient != null && mGoogleApiClient.isConnected()) {
             switchToScreen(R.id.screen_main);
         }
-        else {
+        /*else {
             switchToScreen(R.id.screen_sign_in);
-        }
+        }*/
     }
 
     // updates the label that shows my score
